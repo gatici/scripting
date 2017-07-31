@@ -1,0 +1,3 @@
+find . -iname '*' | xargs grep 'kelime' -sl
+grep -lir "kelime" /etc/
+
