@@ -1,3 +1,11 @@
 find . -iname '*' | xargs grep 'kelime' -sl
 grep -lir "kelime" /etc/
+100MB ve  üzeri dosyaların isimleri
+find /dizin/ -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+
+Linux find ile dosya değiştirme ya da oluşturma tarihine göre dosyaları bulma
+
+Aşağıdaki komut ile /dizin dizininde iki gün önce modifiye edilmiş dosyaları bulup isimlerini yazdırabilirsiniz, 
+mtime yerine ctime yazarsanız 2 gün içerisinde oluşturulmuş dosyaları bulursunuz:
+find /dizin/ -type f -mtime -2 -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
