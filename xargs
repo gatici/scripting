@@ -1,0 +1,27 @@
+For example following example will print 1 2 3 4 using xargs (echo command is default)
+$ echo 1 2 3 4 | xargs 
+1 2 3 4
+*********
+echo 1 2 3 4 | xargs -n 2
+1 2 
+3 4
+
+echo 1 2 3 4 | xargs -n 3
+1 2 3 
+4
+******************
+ind all .bak files in or below the current directory and delete them.
+$ find . -name "*.bak" -type f -print | xargs /bin/rm -f
+*********************
+ find . -name "*.bak" -print0 | xargs -0 -I {} mv {} ~
+ 
+ .bak file'larını home  dizini altına tasır. 
+-0   If there are blank spaces or characters (including newlines) many commands will not work.
+ This option take cares of file names with blank space.
+-I   Replace occurrences of replace-str in the initial-arguments with names read from standard input. 
+Also, unquoted blanks do not terminate input items; instead the separator is the newline character.
+
+**************************
+.c ile biten file'ları alıp /yeni dizinine  tasır.
+find /path/to/dir -iname "*.c" -print0 | xargs -0 -I file mv file  /yeni
+
