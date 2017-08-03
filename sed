@@ -11,5 +11,10 @@ sed '5!s/ham/cheese/' file.txt   dosya icerisinde  5'inci satır haric  ham  ve 
 sed '$d' file.txt   dosyadaki son satırı siler
 sed '/boom/!s/aaa/bb/' file.txt   eger  boom'u bulamazsan  aaa'yı  bb ile replace et
 sed '3,/data/d' file.txt     dosya icerisinde  line3'ten  data'ya  kadar  olan herseyi sil
+*************
+assuming you need lines 20 to 40,
+sed -n '4246,5779p;5780q' file_name
+or
+awk 'FNR>=20 && FNR<=40' file_name
  
  
