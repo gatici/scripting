@@ -1,0 +1,72 @@
+awk komutu kendine girdi olarak verilen text içinde işlemler yapabilmemizi sağlar. Bu text dosyası içerisindeki her 
+satır varsayılan olarak boşluk karakterine göre parçalanır ve değişkenlere atılır. Bu değişkenlere ulaşarak istediğimiz
+işlemleri yapabiliriz.
+
+' : awk komutları tırnak içerisine yazılır.
+$ : Parçalama sonundaki değişkenleri ifade eder. $0: tüm satır. $1:1.değişken $2:2.değişken
+NR : O anda işlenen satır numarasını verir.
+awk komutu düzenli(regex) ifadeleri destekler. Kullanımı
+
+awk 'awk ifadeleri' dosyaadi
+Örneğin elimizde içeriği şöyle olan awk.txt dosyası olsun.
+
+İsim : Mazlum
+Soyisim : Ağar
+Okul : Sakarya Üniversitesi
+Bölüm : Bilgisayar Mühendisliği
+
+İsim : Ali
+Soyisim : Veli
+Okul : İstanbul Üniversitesi
+Bölüm : ELektrik
+
+İsim : Murtaza
+Soyisim : Muzaffer
+Okul : İstanbul Teknik Üniversitesi
+Bölüm : Makina
+Bu dosya içerisinden isim,soyisim gibi kısımları değilde karşılıklarını alalım.
+
+awk '{print $3}' awk.txt
+Çıktı şu şekilde olacak.
+
+Mazlum
+Ağar
+Sakarya
+Bilgisayar
+...
+Burada print ifadesi ile beraber istediklerimizi de yazabiliriz. Sadece okulları alalım.
+
+awk '/Okul/{print $3 " " $4 " " $5}' awk.txt
+Sakarya Üniversitesi
+İstanbul Üniversitesi
+İstanbul Teknik Üniversitesi
+Burada parçalama işlemini "." ifadesine göre yaptığımız için her ifadeyi ayrı ayrı yazdık. Bunun yerine : ifadesine göre parçalayalım.
+
+awk -F":" '/Okul/{print $2}' awk.txt
+Artık ikinci değişken direk :'dan sonraki ifadeyi verecek. Bu şekilde üniversite adını doğrudan alabildik. Bu ifadeleri
+bulundukları satır numaraları ile almak istersek NR kullanabiliriz.
+
+awk -F":" '/Okul/{print NR $2}' awk.txt
+3 Sakarya Üniversitesi
+8 İstanbul Üniversitesi
+13 İstanbul Teknik Üniversitesi
+awk komutunu sadece bir dosya ile kullanmak zorunda değiliz. Herhangi başka bir komut ile kullanabiliriz. Örneğin bir dosya 
+içerisindeki tüm txt dosyalarını pdf dosyasına çevirmek için kullanalım.
+
+ls | awk -F"." /txt/'{print "mv "$1"."$2" "$1".pdf"}' | bash
+ls komutunun çıktısını awk'ya verdik. Daha sonra "." ifadesine göre parçalama yaptık. Ve her satır için mv komutunu 
+bash kabuğuna verdik burada her dosya için
+
+mv dosyaadi.txt dosyaadi.pdf
+şeklinde bir komut oluşacak. Bunun ise bir komut olarak yorumlanabilmesi için bash kabuğuna verdik.
+Düzenli ifadeleri kullanabiliriz demiştik. İçerisinde "S" ile başlayan kelime olan satırları getirmek için.
+
+awk '/S+/{print $0}' awk.txt
+Programlama kullanabiliriz. awk.txt dosyasının 4. ve katları olan satıları awk2.txt dosyasına aktardık. if gibi diğer
+operatörleri de kullanabilirsiniz.
+
+awk '{if (NR % 4 == 0) print $0}' awk.txt  > awk2.txt
+Eğer dosya içerisinde değişiklik yapmak istersek kullanımı şu şekilde:
+
+awk '{gsub("Üniversitesi", "Üni", $0); print > FILENAME}' awk.txt
+Burada "Üniversitesi" kelimeleri "Üni" olarak değiştirilecektir. FILENAME değişkeni verilen dosyanın adını temsil eder.
