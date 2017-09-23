@@ -1,0 +1,12 @@
+
+https://rbgeek.wordpress.com/2014/09/16/ip-setting-on-centos6-using-shell-script/
+
+cat <<EOF > /etc/sysconfig/network-scripts/ifcfg-$2
+
+DEVICE=$2
+BOOTPROTO=static
+IPADDR=$3.$4
+NETMASK=255.255.255.0
+GATEWAY=$3.$5
+ONBOOT=yes
+EOF
