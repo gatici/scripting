@@ -16,5 +16,14 @@ assuming you need lines 20 to 40,
 sed -n '4246,5779p;5780q' file_name
 or
 awk 'FNR>=20 && FNR<=40' file_name
+
+## find word1 and replace with word2 using sed ##
+sed -i 's/word1/word2/g' input
+## you can change the delimiter to keep syntax simple ##
+sed -i 's+word1+word2+g' input
+sed -i 's_word1_word2_g' input
+## you can add I option to GNU sed to case insensitive search ##
+sed -i 's/word1/word2/gI' input
+sed -i 's_word1_word2_gI' input
  
  
