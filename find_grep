@@ -9,3 +9,8 @@ Aşağıdaki komut ile /dizin dizininde iki gün önce modifiye edilmiş dosyala
 mtime yerine ctime yazarsanız 2 gün içerisinde oluşturulmuş dosyaları bulursunuz:
 find /dizin/ -type f -mtime -2 -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
+
+find . -name "projects.*" -print0 | xargs -0 rm
+
+find /var/opt/OV/tmp/index.html* -mdate +1 -exec rm -f {} \;
+
