@@ -1,1 +1,38 @@
+This displays every line in pgm.s whose first character is a letter:
+         grep  "^[a-zA-Z]"  pgm.s
+         
+This displays every line in pgm.s whose first character is not a # (pound sign):
+  grep -v "^#" pgm.s 
+  
+To display all lines in the file1 file that match either the abc or xyz string, enter:
+ grep -E "abc|xyz" file1
+ 
+ To search for a $ (dollar sign) in the file named test2, enter:
+   grep \\$ test2
+   
+            The \\ (double backslash) characters are necessary in order to force the shell to pass a \$ (single
+            backslash, dollar sign) to the grep command. The \ (single backslash) character tells the grep
+            command to treat the following character (in this example the $) as a literal character rather than
+            an expression character. Use the fgrep command to avoid the necessity of using escape characters
+            such as the backslash.
+            
+   To search recursively through /tmp to find files which have the word IBM without recursing through
+            links pointing to directories, type:
 
+            grep R IBM /tmp
+            OR
+
+            grep r -H IBM /tmp  
+            
+ To search recursively through /tmp to find files which have the word IBM and recurse through links
+            as well, type:
+
+            grep r IBM /tmp
+            OR
+
+            grep -R -L IBM /tmp           
+            
+            
+
+         
+          
