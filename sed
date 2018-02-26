@@ -25,8 +25,5 @@ sed -i 's_word1_word2_g' input
 ## you can add I option to GNU sed to case insensitive search ##
 sed -i 's/word1/word2/gI' input
 sed -i 's_word1_word2_gI' input
-
-
- 
- sed -i 's/\<nullok\>//g' /etc/dosya   dosya'daki  nullok'ları  kaldır
+sed -i 's/\<nullok\>//g' /etc/dosya   dosya'daki  nullok'ları  kaldır
 
