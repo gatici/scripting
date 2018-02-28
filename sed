@@ -39,6 +39,7 @@ Edit 2: In your case:
 
 sed -i  's/\(^TestT_STOA_TS1901=\).*/\1N/' /app/test/must/untuio.cf
 
+sed -i '/TEXT_TO_BE_REPLACED/c\This line is removed by the admin.' /tmp/foo
 
 Example
 
