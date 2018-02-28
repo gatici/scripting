@@ -27,3 +27,31 @@ sed -i 's/word1/word2/gI' input
 sed -i 's_word1_word2_gI' input
 sed -i 's/\<nullok\>//g' /etc/dosya   dosya'daki  nullok'ları  kaldır
 
+sed -i 's/\(^Key2=\).*/\1Value4/' file
+The -i flag activates seds in-place editing. It searches for a line that begins with Key2= and replaces the line with the key (\1) followed by the new value Value4.
+
+Edit:
+
+If you have slashes or other command characters used in sed, you have to escape them:
+
+sed -i 's/\(^Key2=\).*/\1long\/value\'/with\$many\"strange\^characters/' /path/to/file
+Edit 2: In your case:
+
+sed -i  's/\(^TestT_STOA_TS1901=\).*/\1N/' /app/test/must/untuio.cf
+
+
+Example
+
+The input file foo
+
+cat foo
+
+Key1=Value1            
+Key2=Value2          
+Key3=Value3
+The command output
+
+% awk -F= ' $1=="Key2" {printf "%s=%s\n",$1,"Value4"; next}1' foo
+Key1=Value1            
+Key2=Value4
+Key3=Value3
