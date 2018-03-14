@@ -43,6 +43,10 @@ OFS :output space character by default space character
 We can change this default behavior using the OFS variable as
 awk 'BEGIN {OFS=":"} {print $4,$5}' input_file    bu durumda  output'da araya  : koyarak yazar
 
+*********************************************
+
+ls -al /dizin1/dizin2   | awk '$8 == "2010"' | wc -l
+
 
 
 
