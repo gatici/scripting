@@ -1,2 +1,4 @@
 
 find . -type f  -exec   grep  -l  "aranacak_kelime"  {} \;
+
+grep -Rni "nfs" /var/log
