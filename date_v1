@@ -1,0 +1,45 @@
+lastdate:dun
+
+#todate=`date +'%d%m'`
+        todate=$today$month
+        echo todate=$todate
+ 
+        thisyear=`date +'%Y'`
+        lastyear=`expr $thisyear - 1`
+ 
+        case "$todate" in
+ 
+        0101) lastdate=$lastyear"1231"  ;;
+        0102) lastdate=$thisyear"0131"  ;;
+        0103)
+        if [ `echo "$thisyear % 4" | bc` -eq 0 ];then
+                        lastdate=$thisyear"0229"
+                        else
+                        lastdate=$thisyear"0228"
+        fi
+        ;;
+        0104) lastdate=$thisyear"0331"  ;;
+        0105) lastdate=$thisyear"0430"  ;;
+        0106) lastdate=$thisyear"0531"  ;;
+        0107) lastdate=$thisyear"0630"  ;;
+        0108) lastdate=$thisyear"0731"  ;;
+        0109) lastdate=$thisyear"0831"  ;;
+        0110) lastdate=$thisyear"0930"  ;;
+        0111) lastdate=$thisyear"1031"  ;;
+        0112) lastdate=$thisyear"1130"  ;;
+        *)
+        #thismonth=`date +'%m'`
+        #today=`date +'%d'`
+        yesterday=`expr $today - 1`
+                if [ $yesterday -lt 10 ];then
+                yesterday=0$yesterday
+                fi
+ 
+        lastdate=$thisyear$month$yesterday
+        ;;
+        esac
+        
+        #bugun=`date +'%d%m%Y'`
+        bugun=`date +'%Y%m%d'`
+        #echo $lastdate
+        echo bugun=$bugun
