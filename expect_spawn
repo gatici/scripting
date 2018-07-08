@@ -1,0 +1,3 @@
+#!/usr/bin/expect
+set dosya  [lindex $argv 0]
+
