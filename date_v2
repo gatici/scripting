@@ -1,0 +1,48 @@
+pazartesileri 2 gun once, digerleri normal
+dayofweek=`date +%w`
+if [ $dayofweek -eq 1 ]
+then
+thisyear=`date +%Y`
+today=`date +'%d'`
+month=`date +'%m'`
+        if [ $today -lt 3 ];then
+                case "$month" in
+                03) 
+echo 1
+                if [ `echo "$thisyear % 4" | bc` -eq 0 ];then
+                        newday=`expr $today - 2 + 29`
+                        else
+                        newday=`expr $today - 2 + 28`
+                fi
+                ;;
+                01|02|04|06|08|09|11) newday=`expr $today - 2 + 31` ;;
+                05|07|10|12) newday=`expr $today - 2 + 30` ;;
+                esac
+
+                month=`expr $month - 1`
+                if [ $month -lt 1 ];then
+                        month=12
+                fi
+                if [ $month -lt 10 ];then
+                        month=0$month
+                fi
+        else
+        newday=`expr $today - 2`
+        fi
+
+today=$newday
+echo "kontrol1: $newday"
+
+if [ $today -lt 10 ];then
+        today=0$today
+fi
+        
+echo pazartesi
+
+else
+        today=`date +'%d'`
+        month=`date +'%m'`
+fi
+
+
+echo "kontrol2 : newday=$newday, today=$today"
