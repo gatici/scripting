@@ -1,3 +1,4 @@
 #!/usr/bin/expect
 set dosya  [lindex $argv 0]
 
+https://www.pantz.org/software/expect/expect_examples_and_tips.html
