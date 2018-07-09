@@ -1,0 +1,38 @@
+tarih=`date +%Y%m%d`
+DIR=/home/user
+
+
+FILE1=A_$tarih.csv
+FILE2=B_$tarih.csv
+SIZE2=`/usr/bin/du -sb $FILE2 | awk ' { print $1} '`
+sleep 5
+
+
+cd $DIR
+
+
+
+if [ ! -f $FILE1 ];
+then
+echo "hatali file"
+
+else
+echo "dosya ismi dogru"
+
+fi
+
+
+
+if [ ! -f $FILE2 ];
+then
+echo "hatali file"
+
+elif [ $SIZE2 -lt 1 ];
+then
+echo "dosya boyutu=$SIZE2 byte "
+
+else
+echo "dosya ismi dogru"
+echo $SIZE2
+
+fi
